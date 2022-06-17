@@ -1,0 +1,111 @@
+import { themes } from "mdx-deck/";
+
+export const theme = { ...themes.big, ...themes.dark, ...themes.prism };
+
+# Concepts to revisit
+
+- Generics
+- Conditional Types
+- Template Literal Types
+- Recursion 😳
+
+---
+
+Whats Recursion doing here?
+
+👉
+
+---
+
+Just chilling with the big boys 🙂
+
+---
+
+## Achtung!!!! ⚠
+
+Most of the challenges are not practical but should help make the concepts sync in.
+
+---
+
+# Generics
+
+---
+
+# Conditional Types
+
+Use cases
+
+- Determine types conditionally.
+- Define type constrains
+- Inferring unknown types
+
+---
+
+## Determining types conditionally
+
+Syntax
+
+```ts
+type NewType = Sometype extends OtherType ? TrueType : FalseType;
+```
+
+---
+
+## Defining type constraints
+
+```ts
+type SupplierOf<T> = T extends { supplier: unknown } ? T["supplier"] : never;
+```
+
+---
+
+## Inferring unknown types
+
+```ts
+type Flatten<Type> = Type extends Array<infer ItemType> ? ItemType : Type;
+```
+
+---
+
+# Template Literal Types
+
+Enable use to:-
+
+- Expand into many strings via unions
+- Produce a new string literal when using with a string literal type
+
+---
+
+## Produce a new string literal
+
+```ts
+type Choco = "Chocoholics";
+
+type Greeting = `Hello ${Choco}`; // Hello Chocoholics
+```
+
+---
+
+## Expand into many strings via unions
+
+```ts
+type Vertical = "top" | "bottom";
+type Horizontal = "right" | "left";
+type Phrases = `${Vertical}-${Horizontal}`; // result => "top-right", "top-left", "bottom-right", "bottom-left"
+```
+
+---
+
+## String Manipulation
+
+Typescripts ships with foour helepers
+
+- Uppercase
+- Lowercase
+- Capitalize
+- Uncapitalize
+
+```ts
+type Greeting = "Hello Choco";
+type UpperCased = Uppercase<Greeting>; // result => HELLO CHOCO
+```

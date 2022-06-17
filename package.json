@@ -1,0 +1,18 @@
+{
+  "name": "ts-workshop",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "mdx-deck slides.mdx",
+    "build": "mdx-deck build slides.mdx",
+    "deploy": "yarn build && node deploy.js"
+  },
+  "dependencies": {
+    "typescript": "^4.7.3"
+  },
+  "devDependencies": {
+    "gh-pages": "^4.0.0",
+    "mdx-deck": "^4.1.1"
+  }
+}
