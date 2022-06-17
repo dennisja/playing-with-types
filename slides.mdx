@@ -1,6 +1,12 @@
 import { themes } from "mdx-deck/";
 
-export const theme = { ...themes.big, ...themes.dark, ...themes.prism };
+export const theme = { ...themes.dark, ...themes.prism };
+
+# Playing Wth Types
+
+<i>If we had typescript there would be no typos in the heading</i>
+
+---
 
 # Concepts to revisit
 
@@ -23,11 +29,71 @@ Just chilling with the big boys 🙂
 
 ## Achtung!!!! ⚠
 
-Most of the challenges are not practical but should help make the concepts sync in.
+Most of the challenges are not practical but should help make the concepts <s>sync</s> sink 🙂 in.
 
 ---
 
 # Generics
+
+Enable us create types for components that can be used with variety of shapes.
+
+---
+
+## Defining function with Generics
+
+```ts
+// using the function declaration
+function identity<Type>(value: Type): Type {
+  return value;
+}
+
+// using intefaces/types aliases
+interface Identity<Type> {
+  (value: Type): Type;
+}
+const identity: Identity<number> = (s) => s;
+```
+
+---
+
+## Defining generic types
+
+You can think of them as functions but for the type system (more on this later)
+
+```ts
+type GenericTypeName<Arg1, Arg2, OptionalArg = ItsDefaultValue> = {
+  a: Arg1;
+  b: Arg2;
+  c?: OptionalArg;
+};
+```
+
+---
+
+## Generic constraints
+
+A way of enforcing what type a generic takes. Thanks to the `extends` keyword
+
+```ts
+type Person<Friends extends any[]> = {
+  age: number;
+  friends: Friends;
+};
+
+type NoFriends = Person<[]>; // works
+type InvalidPerson = Person<12>; // will fail because Person only takes numbers
+
+// with fnctions
+function createPerson<Friends extends any[]>(
+  friends: Friends
+): Person<Friends> {
+  throw "not implemented";
+}
+
+createPerson(12); // fails
+createPerson<string[]>([1, 2, 3]); // fails
+createPerson([1, 2, 3]); // succeeds
+```
 
 ---
 
@@ -109,3 +175,13 @@ Typescripts ships with foour helepers
 type Greeting = "Hello Choco";
 type UpperCased = Uppercase<Greeting>; // result => HELLO CHOCO
 ```
+
+---
+
+# References
+
+- [The TS Handbook](https://www.typescriptlang.org/docs/handbook/intro.html)
+
+---
+
+🕊
